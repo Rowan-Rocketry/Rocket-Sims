@@ -1,3 +1,4 @@
+%% 
 % Rocket fin flutter analysis v3 (hardened)
 % Based on John Bennett / Apogee "Peak of Flight" #615 (12/19/2023)
 % Validated to ~Mach 1.5 per Bennett; use margin (>= 1.5) and higher-fidelity tools above that.
