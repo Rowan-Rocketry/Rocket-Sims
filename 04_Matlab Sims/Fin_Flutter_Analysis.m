@@ -3,7 +3,7 @@
 % Based on John Bennett / Apogee "Peak of Flight" #615 (12/19/2023)
 % Validated to ~Mach 1.5 per Bennett; use margin (>= 1.5) and higher-fidelity tools above that.
 % Limitations: no tapered thickness; no explicit tip-to-tip modeling (see note on raising G).
-% By Zach Pedrick (orig), corrections & hardening by JL/ChatGPT (2025-09-25)
+% By Zach Pedrick
 
 close all; clear; clc;
 
