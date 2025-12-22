@@ -20,7 +20,7 @@ apogee_ft = 12360;                 % Expected apogee altitude, ft
 drogue_diameter_in = 36;          % Drogue parachute diameter, inches
 drogue_Cd = 0.97;                 % Drogue drag coefficient (typical: 1.5-2.2)
 
-main_diameter_in = 168;            % Main parachute diameter, inches
+main_diameter_in = 60;            % Main parachute diameter, inches
 main_Cd = 0.97;                   % Main drag coefficient (typical: 1.5-2.5)
 main_deploy_alt_ft = 1000;         % Main parachute deployment altitude, ft
 
