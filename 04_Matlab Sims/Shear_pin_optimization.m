@@ -20,7 +20,7 @@ FS = 1.5;
 G = 20;
 
 % Has two parachutes?
-chutes2 = 'no';
+% chutes2 = 'no';
 
 % Mass (section division is based on tradional recovery setup with the main by the nosecone and the drogue by the motor)
 M1 = 27.09;      % [lbm] Section 1 is forward the main recovery bay separation point
@@ -115,7 +115,7 @@ for i = 1:apogee_index-1
 end
 
 Mdot_vent = real(Mdot_vent);
-P_bay_ascent = real(P_bay_ascent);
+P_bay_ascent = real(P_bay_ascent); %removes complex numbers
 
 
 % creating gage pressure data
@@ -138,6 +138,7 @@ F_drogue = max(F_sep) * FS;
 F_main = (M1/0.4536)*G + P_bay_ascent_gauge(length(P_bay_ascent_gauge(:,2)),2)*A_bulkhead*1550;
 
 % Selecting shear pin
+% Look into this and add 4-40s 
 number_pins_drogue = 200; % Intializing the number of shear pins for optimization
 number_pins_main = 200;   % Intializing the number of shear pins for optimization
 if F_drogue <= 0
