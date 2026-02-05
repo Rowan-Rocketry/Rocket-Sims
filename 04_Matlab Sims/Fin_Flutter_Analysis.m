@@ -11,7 +11,7 @@ close all; clear; clc;
 Balsa_Wood     =  33359;
 Birch_Plywood  =  89000;
 G10_Fiberglass = 600000;
-Carbon_Fiber   = 600000;   % placeholder; depends on layup; see Bennett #615
+Carbon_Fiber   = 138240;   % placeholder; depends on layup; see Bennett #615
 Aluminum_6061  = 3800000;
 Titanium_6M4V  = 6200000;
 Steel_4130     =12000000;
