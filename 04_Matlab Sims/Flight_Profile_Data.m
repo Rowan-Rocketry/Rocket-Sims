@@ -44,7 +44,7 @@ eventLW = 1.2;
 labelFontSize = 9;
 
 % Label vertical placement: fraction of y-span down from top
-labelInsetFrac = 0.23;   % your preferred placement (0.23 => 77% of plot height)
+labelInsetFrac = 0.3;   % your preferred placement (0.23 => 77% of plot height)
 
 % Export
 doExport = true;
