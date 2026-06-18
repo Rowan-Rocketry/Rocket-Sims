@@ -10,7 +10,7 @@ close all; clear; clc;
 %% -------------------------- Material Shear Modulus [psi] --------------------------
 Balsa_Wood     =  33359;
 Birch_Plywood  =  89000;
-G10_Fiberglass = 600000;
+G10_Fiberglass = 2600000;
 Carbon_Fiber   = 138240;   % placeholder; depends on layup; see Bennett #615
 Aluminum_6061  = 3800000;
 Titanium_6M4V  = 6200000;

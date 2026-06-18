@@ -1,7 +1,7 @@
 clear; close all; clc;
 
 %% ---------------- USER SETTINGS ----------------
-csvPath = "OpenRocket flight data.csv";
+csvPath = "OpenRocket flight data 2.csv";
 
 % Desired x-axis max for ALL plots
 xMaxPlot = 230;
@@ -46,12 +46,20 @@ labelFontSize = 9;
 % Label vertical placement: fraction of y-span down from top
 labelInsetFrac = 0.3;   % your preferred placement (0.23 => 77% of plot height)
 
-% Export
+%% ---------------- EXPORT SETTINGS ----------------
+% High-quality PNG export settings
 doExport = true;
-exportDPI = 300;
+
+% Recommended for very sharp report-quality output
+exportDPI = 600;
+
+% Output filenames
 outAlt = "OpenRocket_Altitude.png";
 outVel = "OpenRocket_Velocity.png";
 outAcc = "OpenRocket_Acceleration.png";
+
+% Optional: export folder
+exportFolder = "Exported_Plots";
 
 %% ---------------- READ CSV (skip '#') ----------------
 % OpenRocket exports often include comment lines starting with '#'
@@ -109,8 +117,11 @@ eventTimes = [tIgn, tBo, tApo, tMain, tGround];
 
 %% ---------------- FIGURE 1: ALTITUDE ----------------
 fig1 = figure('Name','Altitude vs Time','Color','w');
-plot(t, alt, 'LineWidth', lw, 'Color', cAlt); grid on;
-xlabel('Time (s)'); ylabel(altLabel); title('Altitude vs Time');
+plot(t, alt, 'LineWidth', lw, 'Color', cAlt); 
+grid on;
+xlabel('Time (s)'); 
+ylabel(altLabel); 
+title('Altitude vs Time');
 xlim([0 xMaxPlot]);
 if ~isempty(altYLim), ylim(altYLim); end
 
@@ -123,8 +134,11 @@ addEventMarkers_TopAnchored(gca, eventTimes, eventNames, eventColors, eventLineS
 
 %% ---------------- FIGURE 2: VELOCITY ----------------
 fig2 = figure('Name','Vertical velocity vs Time','Color','w');
-plot(t, vel, 'LineWidth', lw, 'Color', cVel); grid on;
-xlabel('Time (s)'); ylabel(velLabel); title('Vertical velocity vs Time');
+plot(t, vel, 'LineWidth', lw, 'Color', cVel); 
+grid on;
+xlabel('Time (s)'); 
+ylabel(velLabel); 
+title('Vertical velocity vs Time');
 xlim([0 xMaxPlot]);
 if ~isempty(velYLim), ylim(velYLim); end
 
@@ -132,18 +146,40 @@ addEventMarkers_TopAnchored(gca, eventTimes, eventNames, eventColors, eventLineS
 
 %% ---------------- FIGURE 3: ACCELERATION ----------------
 fig3 = figure('Name','Vertical acceleration vs Time','Color','w');
-plot(t, accG, 'LineWidth', lw, 'Color', cAcc); grid on;
-xlabel('Time (s)'); ylabel(accLabel); title('Vertical acceleration vs Time');
+plot(t, accG, 'LineWidth', lw, 'Color', cAcc); 
+grid on;
+xlabel('Time (s)'); 
+ylabel(accLabel); 
+title('Vertical acceleration vs Time');
 xlim([0 xMaxPlot]);
 if ~isempty(accYLim_G), ylim(accYLim_G); end
 
 addEventMarkers_TopAnchored(gca, eventTimes, eventNames, eventColors, eventLineStyle, eventLW, labelFontSize, labelInsetFrac);
 
-%% ---------------- EXPORT ----------------
+%% ---------------- HIGH-QUALITY PNG EXPORTS ----------------
+% This section exports all three figures as very high-quality PNG files.
+% It is intentionally kept separate so you can easily find, modify, or remove it.
+
 if doExport
-    exportgraphics(fig1, outAlt, 'Resolution', exportDPI);
-    exportgraphics(fig2, outVel, 'Resolution', exportDPI);
-    exportgraphics(fig3, outAcc, 'Resolution', exportDPI);
+    % Create export folder if it does not already exist
+    if ~exist(exportFolder, 'dir')
+        mkdir(exportFolder);
+    end
+
+    % Full output paths
+    altPath = fullfile(exportFolder, outAlt);
+    velPath = fullfile(exportFolder, outVel);
+    accPath = fullfile(exportFolder, outAcc);
+
+    % Export figures with high resolution
+    exportgraphics(fig1, altPath, 'Resolution', exportDPI);
+    exportgraphics(fig2, velPath, 'Resolution', exportDPI);
+    exportgraphics(fig3, accPath, 'Resolution', exportDPI);
+
+    fprintf('High-quality PNG exports completed:\n');
+    fprintf('  %s\n', altPath);
+    fprintf('  %s\n', velPath);
+    fprintf('  %s\n', accPath);
 end
 
 %% ========================================================================
@@ -198,7 +234,8 @@ end
 function addEventMarkers_TopAnchored(ax, eventTimes, eventNames, eventColors, ls, lw, fs, insetFrac)
     % Event labels anchored to top edge of axes (data coords) and hang downward.
 
-    hold(ax,'on'); drawnow;
+    hold(ax,'on'); 
+    drawnow;
 
     xl = xlim(ax);
     yl = ylim(ax);
